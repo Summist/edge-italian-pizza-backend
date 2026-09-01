@@ -1,10 +1,12 @@
+using EdgeItalianPizza.Domain.Primitives;
+
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Ингредиент пиццы — описывает составляющую часть рецепта.
+/// Объект-значение — ингредиент пиццы в составе рецепта.
 /// Связан со справочником ингредиентов для учёта остатков.
 /// </summary>
-public sealed class PizzaIngredient
+public sealed class PizzaIngredient : ValueObject
 {
     /// <summary>
     /// Ссылка на справочник ингредиентов.
@@ -21,4 +23,11 @@ public sealed class PizzaIngredient
     /// true — клиент может снять галочку, false — ингредиент обязателен.
     /// </summary>
     public bool IsExcludable { get; set; }
+
+    public override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return IngredientId;
+        yield return Name;
+        yield return IsExcludable;
+    }
 }

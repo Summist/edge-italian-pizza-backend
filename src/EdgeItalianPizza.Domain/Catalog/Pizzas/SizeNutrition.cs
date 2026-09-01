@@ -1,10 +1,13 @@
+using EdgeItalianPizza.Domain.Primitives;
+
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Пищевая ценность и вес пиццы — все показатели приведены к 100 граммам.
+/// Объект-значение — пищевая ценность и вес пиццы.
+/// Все показатели приведены к 100 граммам.
 /// Используется для отображения КБЖУ клиенту и расчёта калорийности заказа.
 /// </summary>
-public sealed class SizeNutrition
+public sealed class SizeNutrition : ValueObject
 {
     /// <summary>
     /// Общий вес пиццы в граммах.
@@ -30,4 +33,13 @@ public sealed class SizeNutrition
     /// Углеводы на 100 грамм (г).
     /// </summary>
     public decimal CarbsPer100g { get; set; }
+
+    public override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return WeightGrams;
+        yield return CaloriesPer100g;
+        yield return ProteinPer100g;
+        yield return FatPer100g;
+        yield return CarbsPer100g;
+    }
 }

@@ -1,9 +1,12 @@
+using EdgeItalianPizza.Domain.Primitives;
+
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Размер (объём) напитка — определяет цену и отображается клиенту при заказе.
+/// Объект-значение — размер (объём) напитка.
+/// Определяет цену и отображается клиенту при заказе.
 /// </summary>
-public sealed class DrinkSize
+public sealed class DrinkSize : ValueObject
 {
     /// <summary>
     /// Название размера для отображения (например, «0.3л», «0.5л»).
@@ -20,4 +23,11 @@ public sealed class DrinkSize
     /// 1.0 — стандартный объём, меньше — дешевле, больше — дороже.
     /// </summary>
     public decimal PriceModifier { get; set; }
+
+    public override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return Name;
+        yield return VolumeMl;
+        yield return PriceModifier;
+    }
 }

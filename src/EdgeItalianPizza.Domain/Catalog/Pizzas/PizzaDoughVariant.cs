@@ -1,10 +1,12 @@
+using EdgeItalianPizza.Domain.Primitives;
+
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Вариант теста для конкретного размера пиццы — связывает тип теста
-/// с его стоимостью, пищевой ценностью и отдельным изображением.
+/// Объект-значение — вариант теста для конкретного размера пиццы.
+/// Связывает тип теста с его стоимостью, пищевой ценностью и отдельным изображением.
 /// </summary>
-public sealed class PizzaDoughVariant
+public sealed class PizzaDoughVariant : ValueObject
 {
     /// <summary>
     /// Тип теста — классическое или тонкое.
@@ -25,4 +27,10 @@ public sealed class PizzaDoughVariant
     /// Стоимость дополнительных ингредиентов — зависит от размера и типа теста.
     /// </summary>
     public IReadOnlyList<IngredientPrice> IngredientPrices { get; set; } = [];
+
+    public override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return DoughType;
+        yield return ImageUrl;
+    }
 }

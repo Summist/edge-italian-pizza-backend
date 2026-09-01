@@ -1,10 +1,13 @@
+using EdgeItalianPizza.Domain.Primitives;
+
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Слот в комбо-наборе — описывает, какой тип продукта сюда входит,
+/// Объект-значение — слот в комбо-наборе.
+/// Описывает, какой тип продукта сюда входит,
 /// какой товар установлен по умолчанию и какие опции замены доступны клиенту.
 /// </summary>
-public sealed class ComboItem
+public sealed class ComboItem : ValueObject
 {
     /// <summary>
     /// Тип продукта, который можно подставить в этот слот (пицца, напиток, соус).
@@ -38,4 +41,13 @@ public sealed class ComboItem
     /// Заполненный — только указанные (например, только 30 см для комбо).
     /// </summary>
     public IReadOnlyList<string> AllowedSizeNames { get; set; } = [];
+
+    public override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return ProductType;
+        yield return DefaultProductId;
+        yield return DefaultProductName;
+        yield return AllowReplacement;
+        yield return AllowSizeChange;
+    }
 }

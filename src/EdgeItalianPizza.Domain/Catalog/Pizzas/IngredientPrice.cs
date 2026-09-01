@@ -1,10 +1,13 @@
+using EdgeItalianPizza.Domain.Primitives;
+
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Стоимость дополнительного ингредиента для конкретного размера и типа теста.
+/// Объект-значение — стоимость дополнительного ингредиента
+/// для конкретного размера и типа теста.
 /// Позволяет гибко задавать стоимость — например, пепперони на большой пицце дороже, чем на маленькой.
 /// </summary>
-public sealed class IngredientPrice
+public sealed class IngredientPrice : ValueObject
 {
     /// <summary>
     /// Название ингредиента — совпадает с названием в составе пиццы.
@@ -20,4 +23,10 @@ public sealed class IngredientPrice
     /// Стоимость ингредиента для данного размера и типа теста.
     /// </summary>
     public decimal Price { get; set; }
+
+    public override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return IngredientName;
+        yield return Price;
+    }
 }

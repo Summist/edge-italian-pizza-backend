@@ -1,10 +1,13 @@
+using EdgeItalianPizza.Domain.Primitives;
+
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Размер пиццы — определяет диаметр, ценовой коэффициент
+/// Объект-значение — размер пиццы.
+/// Определяет диаметр, ценовой коэффициент
 /// и набор вариантов теста с КБЖУ для этого размера.
 /// </summary>
-public sealed class PizzaSize
+public sealed class PizzaSize : ValueObject
 {
     /// <summary>
     /// Название размера для отображения клиенту (например, «Small», «Medium», «Large»).
@@ -27,4 +30,11 @@ public sealed class PizzaSize
     /// стоимость дополнительных ингредиентов и пищевая ценность.
     /// </summary>
     public IReadOnlyList<PizzaDoughVariant> DoughVariants { get; set; } = [];
+
+    public override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return Name;
+        yield return DiameterCm;
+        yield return PriceModifier;
+    }
 }
