@@ -1,1 +1,5 @@
-<Solution />
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EdgeItalianPizza.Domain/EdgeItalianPizza.Domain.csproj" Id="e353f4f6-064c-431f-aea0-2df325d1dd2a" />
+  </Folder>
+</Solution>
