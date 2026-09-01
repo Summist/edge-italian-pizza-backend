@@ -6,7 +6,7 @@ namespace EdgeItalianPizza.Domain.Primitives;
 public abstract class EntityBase
 {
     /// <summary>
-    /// Уникальный идентификатор — генерируется автоматически (GUID v7).
+    /// Уникальный идентификатор объекта.
     /// </summary>
     public Guid Id { get; set; } = Guid.CreateVersion7();
 }

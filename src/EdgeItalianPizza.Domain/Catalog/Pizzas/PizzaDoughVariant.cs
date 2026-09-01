@@ -1,5 +1,9 @@
 namespace EdgeItalianPizza.Domain.Catalog;
 
+/// <summary>
+/// Вариант теста для конкретного размера пиццы — связывает тип теста
+/// с его стоимостью, пищевой ценностью и отдельным изображением.
+/// </summary>
 public sealed class PizzaDoughVariant
 {
     /// <summary>
@@ -8,17 +12,17 @@ public sealed class PizzaDoughVariant
     public DoughType DoughType { get; set; }
 
     /// <summary>
-    /// Фото пиццы с этим размером и тестом.
+    /// Изображение пиццы с данным размером и типом теста.
     /// </summary>
     public string ImageUrl { get; set; } = string.Empty;
 
     /// <summary>
-    /// КБЖУ и вес для данного варианта.
+    /// Пищевая ценность (КБЖУ) и вес пиццы для этого варианта.
     /// </summary>
     public SizeNutrition Nutrition { get; set; } = null!;
 
     /// <summary>
-    /// Стоимость каждого ингредиента — зависит от размера.
+    /// Стоимость дополнительных ингредиентов — зависит от размера и типа теста.
     /// </summary>
     public IReadOnlyList<IngredientPrice> IngredientPrices { get; set; } = [];
 }

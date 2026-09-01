@@ -2,6 +2,7 @@ namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
 /// Мерчандайз — фигурки, игрушки, сувениры и прочий несъедобный мерч.
+/// Продаётся как отдельная категория товаров в каталоге.
 /// </summary>
 public sealed class Merchandise : Product
 {
@@ -9,12 +10,12 @@ public sealed class Merchandise : Product
     public override ProductType Type => ProductType.Merchandise;
 
     /// <summary>
-    /// Описание для отображения в каталоге.
+    /// Описание товара для отображения в каталоге (материал, размер, особенности).
     /// </summary>
     public string Description { get; set; } = string.Empty;
 
     /// <summary>
-    /// Вес в граммах.
+    /// Вес товара в граммах — используется для расчёта доставки.
     /// </summary>
     public int WeightGrams { get; set; }
 }

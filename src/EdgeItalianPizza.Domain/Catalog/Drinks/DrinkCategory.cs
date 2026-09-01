@@ -1,7 +1,8 @@
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Категория напитка — определяет группу в меню.
+/// Категория напитка — определяет группу в меню и помогает клиенту
+/// быстро найти нужный тип напитка.
 /// </summary>
 public enum DrinkCategory : byte
 {

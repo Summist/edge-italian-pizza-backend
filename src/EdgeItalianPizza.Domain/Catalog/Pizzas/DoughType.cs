@@ -1,7 +1,7 @@
 namespace EdgeItalianPizza.Domain.Catalog;
 
 /// <summary>
-/// Тип теста — влияет на вес, калорийность.
+/// Тип теста пиццы — определяет вкус, текстуру и влияет на пищевую ценность.
 /// </summary>
 public enum DoughType : byte
 {
@@ -11,7 +11,7 @@ public enum DoughType : byte
     Classic = 1,
 
     /// <summary>
-    /// Тонкое тесто — легче и менее калорийное.
+    /// Тонкое тесто — легче, хрустящее, менее калорийное.
     /// </summary>
     Thin = 2,
 }
