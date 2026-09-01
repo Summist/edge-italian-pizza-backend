@@ -47,7 +47,7 @@ public sealed class User : EntityBase
     /// <summary>
     /// Дата рождения — используется для программ лояльности и поздравлений.
     /// </summary>
-    public DateTime Birthday { get; set; }
+    public DateOnly? Birthday { get; set; }
 
     /// <summary>
     /// Дата и время регистрации (UTC).
