@@ -10,12 +10,18 @@ namespace EdgeItalianPizza.Domain.Catalog;
 public sealed class IngredientPrice : ValueObject
 {
     /// <summary>
-    /// Название ингредиента — совпадает с названием в составе пиццы.
+    /// Ссылка на справочник ингредиентов — используется для синхронизации
+    /// данных при изменении ингредиента.
+    /// </summary>
+    public Guid IngredientId { get; set; }
+
+    /// <summary>
+    /// Название ингредиента — дубль для отображения без дополнительных запросов.
     /// </summary>
     public string IngredientName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Изображение ингредиента для отображения при выборе дополнений.
+    /// Изображение ингредиента — дубль для отображения при выборе дополнений.
     /// </summary>
     public string ImageUrl { get; set; } = string.Empty;
 
@@ -26,6 +32,7 @@ public sealed class IngredientPrice : ValueObject
 
     public override IEnumerable<object?> GetEqualityComponents()
     {
+        yield return IngredientId;
         yield return IngredientName;
         yield return Price;
     }
