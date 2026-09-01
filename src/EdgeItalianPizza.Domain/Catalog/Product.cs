@@ -39,4 +39,10 @@ public abstract class Product : EntityBase
     /// Тип продукта — определяет, к какому разделу каталога относится позиция.
     /// </summary>
     public abstract ProductType Type { get; }
+
+    /// <summary>
+    /// Рекомендуемые дополнения к продукту — список Id продуктов,
+    /// которые предлагаются клиенту при заказе (соусы к пицце, напитки и т.д.).
+    /// </summary>
+    public IReadOnlyList<Guid> RecommendedAdditionIds { get; set; } = [];
 }
