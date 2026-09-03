@@ -1,5 +1,6 @@
 using EdgeItalianPizza.BuildingBlocks.CQRS;
 using EdgeItalianPizza.BuildingBlocks.Results;
+using EdgeItalianPizza.Infrastructure.Caching;
 using EdgeItalianPizza.Modules.Locations.ApplicationCore.Domain;
 using MongoDB.Driver;
 
@@ -8,8 +9,9 @@ namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;
 /// <summary>
 /// Обработчик команды обновления точки.
 /// </summary>
-internal sealed class UpdateLocationCommandHandler(ILocationsDbContext dbContext)
-    : ICommandHandler<UpdateLocationCommand, UpdateLocationResult>
+internal sealed class UpdateLocationCommandHandler(
+    ILocationsDbContext dbContext,
+    ICacheService cache) : ICommandHandler<UpdateLocationCommand, UpdateLocationResult>
 {
     public async Task<Result<UpdateLocationResult>> Handle(
         UpdateLocationCommand command,
@@ -42,6 +44,9 @@ internal sealed class UpdateLocationCommandHandler(ILocationsDbContext dbContext
                 "Location.NotFound",
                 $"Точка с ID {command.LocationId} не найдена");
         }
+
+        await cache.RemoveAsync(LocationCacheKeys.All, cancellationToken);
+        await cache.RemoveAsync(LocationCacheKeys.ById(command.LocationId), cancellationToken);
 
         return Result<UpdateLocationResult>.Success(new UpdateLocationResult(command.LocationId));
     }

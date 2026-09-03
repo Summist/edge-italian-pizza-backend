@@ -1,5 +1,6 @@
 using EdgeItalianPizza.BuildingBlocks.CQRS;
 using EdgeItalianPizza.BuildingBlocks.Results;
+using EdgeItalianPizza.Infrastructure.Caching;
 using EdgeItalianPizza.Modules.Locations.ApplicationCore.Domain;
 
 namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;
@@ -7,8 +8,9 @@ namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;
 /// <summary>
 /// Обработчик команды создания точки.
 /// </summary>
-internal sealed class CreateLocationCommandHandler(ILocationsDbContext dbContext)
-    : ICommandHandler<CreateLocationCommand, CreateLocationResult>
+internal sealed class CreateLocationCommandHandler(
+    ILocationsDbContext dbContext,
+    ICacheService cache) : ICommandHandler<CreateLocationCommand, CreateLocationResult>
 {
     public async Task<Result<CreateLocationResult>> Handle(
         CreateLocationCommand command,
@@ -32,6 +34,8 @@ internal sealed class CreateLocationCommandHandler(ILocationsDbContext dbContext
         };
 
         await dbContext.Locations.InsertOneAsync(location, cancellationToken: cancellationToken);
+
+        await cache.RemoveAsync(LocationCacheKeys.All, cancellationToken);
 
         return Result<CreateLocationResult>.Success(new CreateLocationResult(location.Id));
     }

@@ -12,8 +12,7 @@ public sealed record LocationResponse(
     double Longitude,
     decimal DeliveryRadiusKm,
     IReadOnlyList<WorkingHoursResponse> WorkingHours,
-    bool IsActive
-);
+    bool IsActive);
 
 /// <summary>
 /// Ответ с расписанием работы.
@@ -21,5 +20,4 @@ public sealed record LocationResponse(
 public sealed record WorkingHoursResponse(
     DayOfWeek DayOfWeek,
     TimeOnly OpenTime,
-    TimeOnly CloseTime
-);
+    TimeOnly CloseTime);
