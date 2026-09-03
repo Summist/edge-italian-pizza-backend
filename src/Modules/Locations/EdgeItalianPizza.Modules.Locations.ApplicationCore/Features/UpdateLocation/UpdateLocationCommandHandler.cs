@@ -8,7 +8,7 @@ namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;
 /// <summary>
 /// Обработчик команды обновления точки.
 /// </summary>
-public sealed class UpdateLocationCommandHandler(ILocationsDbContext dbContext)
+internal sealed class UpdateLocationCommandHandler(ILocationsDbContext dbContext)
     : ICommandHandler<UpdateLocationCommand, UpdateLocationResult>
 {
     public async Task<Result<UpdateLocationResult>> Handle(

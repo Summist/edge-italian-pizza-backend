@@ -13,4 +13,4 @@ public sealed record UpdateLocationCommand(
     double Latitude,
     double Longitude,
     decimal DeliveryRadiusKm,
-    List<WorkingHoursDto> WorkingHours) : ICommand<UpdateLocationResult>, ILocationFields;
+    IReadOnlyList<WorkingHoursDto> WorkingHours) : ICommand<UpdateLocationResult>, ILocationFields;

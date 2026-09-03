@@ -7,7 +7,7 @@ namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;
 /// <summary>
 /// Обработчик запроса получения точки по ID.
 /// </summary>
-public sealed class GetLocationByIdQueryHandler(ILocationsDbContext dbContext)
+internal sealed class GetLocationByIdQueryHandler(ILocationsDbContext dbContext)
     : IQueryHandler<GetLocationByIdQuery, LocationDetailResponse>
 {
     public async Task<Result<LocationDetailResponse>> Handle(

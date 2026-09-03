@@ -7,10 +7,10 @@ namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;
 /// <summary>
 /// Обработчик запроса получения списка точек.
 /// </summary>
-public sealed class GetLocationsQueryHandler(ILocationsDbContext dbContext)
-    : IQueryHandler<GetLocationsQuery, List<LocationResponse>>
+internal sealed class GetLocationsQueryHandler(ILocationsDbContext dbContext)
+    : IQueryHandler<GetLocationsQuery, IReadOnlyList<LocationResponse>>
 {
-    public async Task<Result<List<LocationResponse>>> Handle(
+    public async Task<Result<IReadOnlyList<LocationResponse>>> Handle(
         GetLocationsQuery query,
         CancellationToken cancellationToken)
     {
@@ -34,6 +34,6 @@ public sealed class GetLocationsQueryHandler(ILocationsDbContext dbContext)
             location.IsActive
         )).ToList();
 
-        return Result<List<LocationResponse>>.Success(responses);
+        return Result<IReadOnlyList<LocationResponse>>.Success(responses);
     }
 }

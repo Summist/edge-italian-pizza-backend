@@ -38,5 +38,5 @@ public interface ILocationFields
     /// <summary>
     /// Расписание работы.
     /// </summary>
-    List<WorkingHoursDto> WorkingHours { get; }
+    IReadOnlyList<WorkingHoursDto> WorkingHours { get; }
 }

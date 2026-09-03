@@ -14,18 +14,17 @@ namespace EdgeItalianPizza.Modules.Locations.ApplicationCore;
 /// </remarks>
 internal sealed class LocationModule(
     ICommandHandler<CreateLocationCommand, CreateLocationResult> createLocationHandler,
-    IQueryHandler<GetLocationsQuery, List<LocationResponse>> getLocationsHandler,
+    IQueryHandler<GetLocationsQuery, IReadOnlyList<LocationResponse>> getLocationsHandler,
     IQueryHandler<GetLocationByIdQuery, LocationDetailResponse> getLocationByIdHandler,
     ICommandHandler<UpdateLocationCommand, UpdateLocationResult> updateLocationHandler,
-    ICommandHandler<DeactivateLocationCommand, DeactivateLocationResult> deactivateLocationHandler
-) : ILocationModule
+    ICommandHandler<DeactivateLocationCommand, DeactivateLocationResult> deactivateLocationHandler) : ILocationModule
 {
     public async Task<Result<CreateLocationResult>> CreateAsync(
         CreateLocationCommand command,
         CancellationToken cancellationToken)
         => await createLocationHandler.Handle(command, cancellationToken);
 
-    public async Task<Result<List<LocationResponse>>> GetAllAsync(
+    public async Task<Result<IReadOnlyList<LocationResponse>>> GetAllAsync(
         CancellationToken cancellationToken)
         => await getLocationsHandler.Handle(new GetLocationsQuery(), cancellationToken);
 

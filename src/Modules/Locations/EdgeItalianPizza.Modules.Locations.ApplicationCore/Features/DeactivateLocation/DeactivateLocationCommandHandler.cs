@@ -8,7 +8,7 @@ namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;
 /// <summary>
 /// Обработчик команды деактивации точки.
 /// </summary>
-public sealed class DeactivateLocationCommandHandler(ILocationsDbContext dbContext)
+internal sealed class DeactivateLocationCommandHandler(ILocationsDbContext dbContext)
     : ICommandHandler<DeactivateLocationCommand, DeactivateLocationResult>
 {
     public async Task<Result<DeactivateLocationResult>> Handle(

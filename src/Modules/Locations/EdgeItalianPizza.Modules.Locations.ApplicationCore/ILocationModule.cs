@@ -19,7 +19,7 @@ public interface ILocationModule
     /// <summary>
     /// Получить список всех точек.
     /// </summary>
-    Task<Result<List<LocationResponse>>> GetAllAsync(
+    Task<Result<IReadOnlyList<LocationResponse>>> GetAllAsync(
         CancellationToken cancellationToken);
 
     /// <summary>

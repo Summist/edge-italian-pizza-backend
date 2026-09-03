@@ -11,7 +11,7 @@ public sealed record LocationResponse(
     double Latitude,
     double Longitude,
     decimal DeliveryRadiusKm,
-    List<WorkingHoursResponse> WorkingHours,
+    IReadOnlyList<WorkingHoursResponse> WorkingHours,
     bool IsActive
 );
 

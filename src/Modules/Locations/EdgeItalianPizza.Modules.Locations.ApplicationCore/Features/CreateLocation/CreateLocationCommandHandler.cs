@@ -7,7 +7,7 @@ namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;
 /// <summary>
 /// Обработчик команды создания точки.
 /// </summary>
-public sealed class CreateLocationCommandHandler(ILocationsDbContext dbContext)
+internal sealed class CreateLocationCommandHandler(ILocationsDbContext dbContext)
     : ICommandHandler<CreateLocationCommand, CreateLocationResult>
 {
     public async Task<Result<CreateLocationResult>> Handle(
@@ -22,11 +22,11 @@ public sealed class CreateLocationCommandHandler(ILocationsDbContext dbContext)
             Latitude = command.Latitude,
             Longitude = command.Longitude,
             DeliveryRadiusKm = command.DeliveryRadiusKm,
-            WorkingHours = command.WorkingHours.Select(wh => new WorkingHours
+            WorkingHours = command.WorkingHours.Select(workingHours => new WorkingHours
             {
-                DayOfWeek = wh.DayOfWeek,
-                OpenTime = wh.OpenTime,
-                CloseTime = wh.CloseTime
+                DayOfWeek = workingHours.DayOfWeek,
+                OpenTime = workingHours.OpenTime,
+                CloseTime = workingHours.CloseTime
             }).ToList(),
             IsActive = true
         };

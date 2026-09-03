@@ -12,7 +12,7 @@ public sealed record CreateLocationCommand(
     double Latitude,
     double Longitude,
     decimal DeliveryRadiusKm,
-    List<WorkingHoursDto> WorkingHours) : ICommand<CreateLocationResult>, ILocationFields;
+    IReadOnlyList<WorkingHoursDto> WorkingHours) : ICommand<CreateLocationResult>, ILocationFields;
 
 /// <summary>
 /// DTO расписания работы.
