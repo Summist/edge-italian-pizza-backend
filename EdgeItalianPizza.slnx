@@ -3,6 +3,10 @@
     <Project Path="src/BuildingBlocks/EdgeItalianPizza.BuildingBlocks/EdgeItalianPizza.BuildingBlocks.csproj" />
     <Project Path="src/BuildingBlocks/EdgeItalianPizza.BuildingBlocks.Tests/EdgeItalianPizza.BuildingBlocks.Tests.csproj" />
   </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="src/Infrastructure/EdgeItalianPizza.Infrastructure/EdgeItalianPizza.Infrastructure.csproj" />
+    <Project Path="src/Infrastructure/EdgeItalianPizza.Infrastructure.Tests/EdgeItalianPizza.Infrastructure.Tests.csproj" />
+  </Folder>
   <Folder Name="/src/Modules/Catalog/">
     <Project Path="src/Modules/Catalog/EdgeItalianPizza.Modules.Catalog.Domain/EdgeItalianPizza.Modules.Catalog.Domain.csproj" />
   </Folder>
