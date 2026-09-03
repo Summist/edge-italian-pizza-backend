@@ -1,6 +1,6 @@
 using EdgeItalianPizza.BuildingBlocks.Primitives;
 
-namespace EdgeItalianPizza.Modules.Locations.Domain;
+namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Domain;
 
 /// <summary>
 /// Точка выдачи/доставки — физическое расположение пиццерии.

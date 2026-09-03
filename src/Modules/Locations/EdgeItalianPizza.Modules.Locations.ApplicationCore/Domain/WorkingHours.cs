@@ -1,6 +1,6 @@
 using EdgeItalianPizza.BuildingBlocks.Primitives;
 
-namespace EdgeItalianPizza.Modules.Locations.Domain;
+namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Domain;
 
 /// <summary>
 /// Расписание работы на один день недели.
