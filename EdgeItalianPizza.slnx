@@ -2,4 +2,8 @@
   <Folder Name="/src/">
     <Project Path="src/EdgeItalianPizza.Domain/EdgeItalianPizza.Domain.csproj" Id="e353f4f6-064c-431f-aea0-2df325d1dd2a" />
   </Folder>
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/EdgeItalianPizza.BuildingBlocks.Tests/EdgeItalianPizza.BuildingBlocks.Tests.csproj" />
+    <Project Path="src/BuildingBlocks/EdgeItalianPizza.BuildingBlocks/EdgeItalianPizza.BuildingBlocks.csproj" />
+  </Folder>
 </Solution>
