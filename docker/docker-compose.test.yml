@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: edge_pizza_test_mongodb
+    ports:
+      - "27018:27017"
+
+  redis:
+    image: redis:7-alpine
+    container_name: edge_pizza_test_redis
+    ports:
+      - "6380:6379"
