@@ -17,6 +17,32 @@ services:
     volumes:
       - redis_data:/data
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: edge_pizza_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbit
+      RABBITMQ_DEFAULT_PASS: rabbit
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: edge_pizza_postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: edge_italian_pizza
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
 volumes:
   mongodb_data:
   redis_data:
+  rabbitmq_data:
+  postgres_data:
