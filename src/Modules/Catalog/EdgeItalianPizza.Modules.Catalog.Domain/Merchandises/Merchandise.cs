@@ -11,7 +11,7 @@ public sealed class Merchandise : Product
     /// <summary>
     /// Описание товара.
     /// </summary>
-    public string Description { get; set; } = string.Empty;
+    public required string Description { get; set; }
 
     /// <summary>
     /// Вес товара в граммах (для расчёта доставки).

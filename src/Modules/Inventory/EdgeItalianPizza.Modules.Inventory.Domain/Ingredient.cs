@@ -11,12 +11,12 @@ public sealed class Ingredient : EntityBase
     /// <summary>
     /// Название ингредиента.
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     /// <summary>
     /// URL изображения ингредиента.
     /// </summary>
-    public string ImageUrl { get; set; } = string.Empty;
+    public required string ImageUrl { get; set; }
 
     /// <summary>
     /// Единица измерения (штука, грамм, миллилитр).

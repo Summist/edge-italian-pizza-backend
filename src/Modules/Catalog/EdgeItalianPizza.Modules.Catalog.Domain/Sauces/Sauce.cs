@@ -10,7 +10,7 @@ public sealed class Sauce : Product
     /// <summary>
     /// Описание соуса.
     /// </summary>
-    public string Description { get; set; } = string.Empty;
+    public required string Description { get; set; }
 
     /// <summary>
     /// Вес порции в граммах.

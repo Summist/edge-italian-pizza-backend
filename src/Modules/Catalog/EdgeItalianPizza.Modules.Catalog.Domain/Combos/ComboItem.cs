@@ -21,7 +21,7 @@ public sealed class ComboItem : ValueObject
     /// <summary>
     /// Название дефолтного продукта (денормализовано).
     /// </summary>
-    public string DefaultProductName { get; set; } = string.Empty;
+    public required string DefaultProductName { get; set; }
 
     /// <summary>
     /// Можно ли заменить продукт на другой того же типа.

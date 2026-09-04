@@ -13,7 +13,7 @@ public sealed class User : EntityBase
     /// <summary>
     /// Имя пользователя.
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     /// <summary>
     /// Email (nullable — не обязателен для клиентов по телефону).

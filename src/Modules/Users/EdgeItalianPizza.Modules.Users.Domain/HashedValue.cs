@@ -11,7 +11,7 @@ public sealed class HashedValue : ValueObject
     /// <summary>
     /// Захешированное значение.
     /// </summary>
-    public string Hash { get; set; } = string.Empty;
+    public required string Hash { get; set; }
 
     /// <summary>
     /// Версия алгоритма хеширования.

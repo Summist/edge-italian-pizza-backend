@@ -10,12 +10,12 @@ public abstract class Product : EntityBase
     /// <summary>
     /// URL изображения продукта.
     /// </summary>
-    public string ImageUrl { get; set; } = string.Empty;
+    public required string ImageUrl { get; set; }
 
     /// <summary>
     /// Название продукта.
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     /// <summary>
     /// Базовая цена продукта.

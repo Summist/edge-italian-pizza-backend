@@ -31,5 +31,5 @@ public sealed class StockMovement : EntityBase
     /// <summary>
     /// Причина/комментарий к движению.
     /// </summary>
-    public string Reason { get; set; } = string.Empty;
+    public required string Reason { get; set; }
 }

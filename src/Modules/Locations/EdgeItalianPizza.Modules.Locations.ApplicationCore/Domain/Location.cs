@@ -11,17 +11,17 @@ public sealed class Location : EntityBase
     /// <summary>
     /// Название точки (например, "Пиццерия на Тверской").
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     /// <summary>
     /// Город.
     /// </summary>
-    public string City { get; set; } = string.Empty;
+    public required string City { get; set; }
 
     /// <summary>
     /// Полный адрес.
     /// </summary>
-    public string Address { get; set; } = string.Empty;
+    public required string Address { get; set; }
 
     /// <summary>
     /// Широта (географическая координата).

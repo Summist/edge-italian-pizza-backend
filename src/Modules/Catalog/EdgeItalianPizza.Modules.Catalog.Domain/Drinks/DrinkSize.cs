@@ -10,7 +10,7 @@ public sealed class DrinkSize : ValueObject
     /// <summary>
     /// Название размера (например, "0.3 л", "0.5 л").
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     /// <summary>
     /// Объём в миллилитрах.

@@ -10,7 +10,7 @@ public sealed class Drink : Product
     /// <summary>
     /// Описание напитка.
     /// </summary>
-    public string Description { get; set; } = string.Empty;
+    public required string Description { get; set; }
 
     /// <summary>
     /// Категория напитка (кофе, чай, газировка и т.д.).

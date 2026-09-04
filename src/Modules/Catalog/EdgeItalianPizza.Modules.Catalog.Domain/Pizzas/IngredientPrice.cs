@@ -15,12 +15,12 @@ public sealed class IngredientPrice : ValueObject
     /// <summary>
     /// Название ингредиента (денормализовано).
     /// </summary>
-    public string IngredientName { get; set; } = string.Empty;
+    public required string IngredientName { get; set; }
 
     /// <summary>
     /// URL изображения ингредиента.
     /// </summary>
-    public string ImageUrl { get; set; } = string.Empty;
+    public required string ImageUrl { get; set; }
 
     /// <summary>
     /// Стоимость добавления.

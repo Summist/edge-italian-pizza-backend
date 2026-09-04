@@ -16,7 +16,7 @@ public sealed class PizzaIngredient : ValueObject
     /// <summary>
     /// Название ингредиента (денормализовано для отображения).
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     /// <summary>
     /// Можно ли исключить ингредиент при заказе.
