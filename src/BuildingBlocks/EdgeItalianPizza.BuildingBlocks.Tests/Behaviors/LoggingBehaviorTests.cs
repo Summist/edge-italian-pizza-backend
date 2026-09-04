@@ -28,7 +28,7 @@ public sealed class LoggingBehaviorTests
     }
 
     [Fact]
-    public async Task Handle_WhenNextFails_ShouldReturnFailureAndLogFailed()
+    public async Task Handle_WhenNextFails_ShouldReturnFailure()
     {
         // Arrange
         var logger = Substitute.For<ILogger<LoggingBehavior<DummyRequest, string>>>();
@@ -46,7 +46,7 @@ public sealed class LoggingBehaviorTests
     }
 
     [Fact]
-    public async Task Handle_WhenNextThrows_ShouldLogErrorAndRethrow()
+    public async Task Handle_WhenNextThrows_ShouldRethrow()
     {
         // Arrange
         var logger = Substitute.For<ILogger<LoggingBehavior<DummyRequest, string>>>();
@@ -61,6 +61,46 @@ public sealed class LoggingBehaviorTests
         // Assert
         await act.Should().ThrowAsync<InvalidOperationException>()
             .WithMessage("boom");
+    }
+
+    [Fact]
+    public async Task Handle_WhenSlowHandler_ShouldStillReturnResult()
+    {
+        // Arrange
+        var logger = Substitute.For<ILogger<LoggingBehavior<DummyRequest, string>>>();
+        var behavior = new LoggingBehavior<DummyRequest, string>(logger);
+
+        // Act
+        var result = await behavior.Handle(
+            new DummyRequest("payload"),
+            () => Task.Delay(3100).ContinueWith(_ => Result<string>.Success("ok")),
+            CancellationToken.None);
+
+        // Assert
+        result.IsSuccess.Should().BeTrue();
+        result.Value.Should().Be("ok");
+    }
+
+    [Fact]
+    public async Task Handle_ShouldCallNext()
+    {
+        // Arrange
+        var logger = Substitute.For<ILogger<LoggingBehavior<DummyRequest, string>>>();
+        var behavior = new LoggingBehavior<DummyRequest, string>(logger);
+        var nextCalled = false;
+
+        // Act
+        await behavior.Handle(
+            new DummyRequest("payload"),
+            () =>
+            {
+                nextCalled = true;
+                return Task.FromResult(Result<string>.Success("ok"));
+            },
+            CancellationToken.None);
+
+        // Assert
+        nextCalled.Should().BeTrue();
     }
 
     public sealed record DummyRequest(string Payload) : ICommand<string>;

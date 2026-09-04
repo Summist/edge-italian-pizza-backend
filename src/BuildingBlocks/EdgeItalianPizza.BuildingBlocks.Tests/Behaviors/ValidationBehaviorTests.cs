@@ -150,5 +150,36 @@ public sealed class ValidationBehaviorTests
         result.Error.ValidationErrors.Should().HaveCount(1);
     }
 
+    [Fact]
+    public async Task Handle_WithFailingValidator_ShouldNotCallNext()
+    {
+        // Arrange
+        var validator = Substitute.For<IValidator<DummyRequest>>();
+        var validationResult = new ValidationResult(new[]
+        {
+            new ValidationFailure("Name", "Name is required")
+        });
+        validator
+            .Validate(Arg.Any<ValidationContext<DummyRequest>>())
+            .Returns(validationResult);
+
+        var behavior = new ValidationBehavior<DummyRequest, string>(new[] { validator });
+
+        var nextCalled = false;
+
+        // Act
+        await behavior.Handle(
+            new DummyRequest(),
+            () =>
+            {
+                nextCalled = true;
+                return Task.FromResult(Result<string>.Success("ok"));
+            },
+            CancellationToken.None);
+
+        // Assert
+        nextCalled.Should().BeFalse();
+    }
+
     public sealed record DummyRequest : ICommand<string>;
 }

@@ -4,12 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EdgeItalianPizza.Infrastructure.Tests.Caching;
 
-public sealed class RedisCacheServiceTests : IDisposable
+public sealed class InMemoryCacheServiceTests : IDisposable
 {
     private readonly ICacheService _cache;
     private readonly ServiceProvider _serviceProvider;
 
-    public RedisCacheServiceTests()
+    public InMemoryCacheServiceTests()
     {
         var services = new ServiceCollection();
         services.AddMemoryCache();
@@ -133,6 +133,26 @@ public sealed class RedisCacheServiceTests : IDisposable
         var cached = await _cache.GetAsync<TestValue>(key);
         cached.Should().NotBeNull();
         cached!.Name.Should().Be("factory");
+    }
+
+    [Fact]
+    public async Task GetOrAddAsync_FactoryReturnsNull_DoesNotCache()
+    {
+        // Arrange
+        var key = "test:oradd:null";
+
+        // Act
+        var result = await _cache.GetOrAddAsync(key, ct =>
+        {
+            return Task.FromResult<TestValue?>(null);
+        });
+
+        // Assert
+        result.Should().BeNull();
+
+        // Verify it was not cached
+        var cached = await _cache.GetAsync<TestValue>(key);
+        cached.Should().BeNull();
     }
 
     private sealed record TestValue(string Name, int Number);
