@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="EdgeItalianPizza.Modules.Locations.IntegrationTests" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\EdgeItalianPizza.BuildingBlocks\EdgeItalianPizza.BuildingBlocks.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\EdgeItalianPizza.Infrastructure\EdgeItalianPizza.Infrastructure.csproj" />
   </ItemGroup>

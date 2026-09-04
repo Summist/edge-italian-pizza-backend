@@ -20,6 +20,7 @@
     <Project Path="src/Modules/Locations/EdgeItalianPizza.Modules.Locations.ApplicationCore/EdgeItalianPizza.Modules.Locations.ApplicationCore.csproj" />
     <Project Path="src/Modules/Locations/EdgeItalianPizza.Modules.Locations.Persistence.MongoDb/EdgeItalianPizza.Modules.Locations.Persistence.MongoDb.csproj" />
     <Project Path="src/Modules/Locations/EdgeItalianPizza.Modules.Locations.UnitTests/EdgeItalianPizza.Modules.Locations.UnitTests.csproj" />
+    <Project Path="src/Modules/Locations/EdgeItalianPizza.Modules.Locations.IntegrationTests/EdgeItalianPizza.Modules.Locations.IntegrationTests.csproj" />
   </Folder>
   <Folder Name="/src/Modules/Users/">
     <Project Path="src/Modules/Users/EdgeItalianPizza.Modules.Users.Domain/EdgeItalianPizza.Modules.Users.Domain.csproj" />
