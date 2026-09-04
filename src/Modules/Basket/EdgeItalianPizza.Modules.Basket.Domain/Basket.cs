@@ -1,10 +1,12 @@
+using EdgeItalianPizza.BuildingBlocks.Primitives;
+
 namespace EdgeItalianPizza.Modules.Basket.Domain;
 
 /// <summary>
 /// Корзина пользователя — текущий не оформленный заказ.
 /// Одна корзина на пользователя. Содержит снимок цен на момент добавления.
 /// </summary>
-public sealed class Basket
+public sealed class Basket : EntityBase
 {
     /// <summary>
     /// Идентификатор владельца корзины.
@@ -40,14 +42,4 @@ public sealed class Basket
     /// Количество монет к списанию.
     /// </summary>
     public int CoinsAmount { get; set; }
-
-    /// <summary>
-    /// Дата и время создания корзины.
-    /// </summary>
-    public DateTime CreatedAtUtc { get; set; }
-
-    /// <summary>
-    /// Дата и время последнего обновления.
-    /// </summary>
-    public DateTime UpdatedAtUtc { get; set; }
 }

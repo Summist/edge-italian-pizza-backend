@@ -61,5 +61,6 @@ public sealed class BasketItem : ValueObject
         yield return Name;
         yield return SizeName;
         yield return DoughType;
+        yield return ExcludedIngredientIds.OrderBy(x => x).ToList();
     }
 }

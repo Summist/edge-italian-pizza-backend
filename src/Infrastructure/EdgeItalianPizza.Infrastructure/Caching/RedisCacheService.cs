@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Text.Json;
 using Microsoft.Extensions.Caching.Distributed;
 
@@ -8,6 +9,8 @@ namespace EdgeItalianPizza.Infrastructure.Caching;
 /// </summary>
 internal sealed class RedisCacheService(IDistributedCache cache) : ICacheService
 {
+    private readonly ConcurrentDictionary<string, SemaphoreSlim> _locks = new();
+
     public async Task<T?> GetAsync<T>(string key, CancellationToken cancellationToken = default)
     {
         var bytes = await cache.GetAsync(key, cancellationToken);
@@ -45,12 +48,30 @@ internal sealed class RedisCacheService(IDistributedCache cache) : ICacheService
             return cached;
         }
 
-        var value = await factory(cancellationToken);
-        if (value is not null)
-        {
-            await SetAsync(key, value, expiry, cancellationToken);
-        }
+        var semaphore = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+        await semaphore.WaitAsync(cancellationToken);
 
-        return value;
+        try
+        {
+            cached = await GetAsync<T>(key, cancellationToken);
+            if (cached is not null)
+            {
+                return cached;
+            }
+
+            var value = await factory(cancellationToken);
+
+            if (value is not null)
+            {
+                await SetAsync(key, value, expiry, cancellationToken);
+            }
+
+            return value;
+        }
+        finally
+        {
+            semaphore.Release();
+            _locks.TryRemove(key, out _);
+        }
     }
 }
