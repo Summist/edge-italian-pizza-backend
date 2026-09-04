@@ -1,3 +1,4 @@
+using EdgeItalianPizza.BuildingBlocks.Caching;
 using EdgeItalianPizza.Infrastructure.Caching;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,3 +1,4 @@
+using EdgeItalianPizza.BuildingBlocks.Caching;
 using EdgeItalianPizza.Infrastructure.Caching;
 using EdgeItalianPizza.Infrastructure.Redis;
 using Microsoft.Extensions.Configuration;

@@ -1,4 +1,4 @@
-namespace EdgeItalianPizza.Infrastructure.Caching;
+namespace EdgeItalianPizza.BuildingBlocks.Caching;
 
 /// <summary>
 /// Абстракция кэша.

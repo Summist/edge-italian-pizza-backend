@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\EdgeItalianPizza.BuildingBlocks\EdgeItalianPizza.BuildingBlocks.csproj" />
-    <ProjectReference Include="..\..\..\Infrastructure\EdgeItalianPizza.Infrastructure\EdgeItalianPizza.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

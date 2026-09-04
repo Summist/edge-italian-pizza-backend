@@ -1,6 +1,6 @@
+using EdgeItalianPizza.BuildingBlocks.Caching;
 using EdgeItalianPizza.BuildingBlocks.CQRS;
 using EdgeItalianPizza.BuildingBlocks.Results;
-using EdgeItalianPizza.Infrastructure.Caching;
 using MongoDB.Driver;
 
 namespace EdgeItalianPizza.Modules.Locations.ApplicationCore.Features;

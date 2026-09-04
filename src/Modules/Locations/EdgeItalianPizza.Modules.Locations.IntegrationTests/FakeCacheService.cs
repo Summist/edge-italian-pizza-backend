@@ -1,5 +1,5 @@
 using System.Collections.Concurrent;
-using EdgeItalianPizza.Infrastructure.Caching;
+using EdgeItalianPizza.BuildingBlocks.Caching;
 
 namespace EdgeItalianPizza.Modules.Locations.IntegrationTests;
 
