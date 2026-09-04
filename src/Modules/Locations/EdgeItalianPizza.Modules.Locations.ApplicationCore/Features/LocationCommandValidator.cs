@@ -40,5 +40,17 @@ public abstract class LocationCommandValidator<T> : AbstractValidator<T>
 
         RuleFor(x => x.WorkingHours)
             .NotEmpty().WithMessage("Расписание работы обязательно");
+
+        RuleFor(x => x.WorkingHours)
+            .Must(workingHours => workingHours.Count <= 7)
+            .WithMessage("Расписание не может содержать более 7 дней");
+
+        RuleFor(x => x.WorkingHours)
+            .Must(workingHours => workingHours.Select(wh => wh.DayOfWeek).Distinct().Count() == workingHours.Count)
+            .WithMessage("Дни недели не должны повторяться");
+
+        RuleForEach(x => x.WorkingHours)
+            .Must(workingHours => workingHours.OpenTime < workingHours.CloseTime)
+            .WithMessage("Время открытия должно быть раньше времени закрытия");
     }
 }

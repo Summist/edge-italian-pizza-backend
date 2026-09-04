@@ -2,6 +2,7 @@ using EdgeItalianPizza.Modules.Locations.ApplicationCore;
 using EdgeItalianPizza.Modules.Locations.Persistence.MongoDb.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace EdgeItalianPizza.Modules.Locations.Persistence.MongoDb;
 
@@ -23,6 +24,8 @@ public static class DependencyInjection
         services.AddSingleton<LocationsDbContext>();
         services.AddSingleton<ILocationsDbContext>(sp => sp.GetRequiredService<LocationsDbContext>());
         services.AddHostedService<MongoDbInitializer>();
+
+        services.AddSingleton<IValidateOptions<MongoDbOptions>, MongoDbOptionsValidator>();
 
         return services;
     }

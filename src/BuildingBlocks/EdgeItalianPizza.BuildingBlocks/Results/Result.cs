@@ -1,11 +1,8 @@
-using System.Runtime.InteropServices;
-
 namespace EdgeItalianPizza.BuildingBlocks.Results;
 
 /// <summary>
 /// Результат операции без возвращаемого значения.
 /// </summary>
-[StructLayout(LayoutKind.Sequential)]
 public readonly record struct Result
 {
     /// <summary>

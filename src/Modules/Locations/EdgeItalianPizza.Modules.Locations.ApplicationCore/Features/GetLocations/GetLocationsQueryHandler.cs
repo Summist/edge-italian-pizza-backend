@@ -21,7 +21,7 @@ internal sealed class GetLocationsQueryHandler(
             async cancellationToken =>
             {
                 var locations = await dbContext.Locations
-                    .Find(_ => true)
+                    .Find(location => location.IsActive)
                     .ToListAsync(cancellationToken);
 
                 return locations.Select(location => new LocationResponse(

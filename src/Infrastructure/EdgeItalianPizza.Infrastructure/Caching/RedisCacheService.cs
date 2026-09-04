@@ -9,7 +9,7 @@ namespace EdgeItalianPizza.Infrastructure.Caching;
 /// </summary>
 internal sealed class RedisCacheService(IDistributedCache cache) : ICacheService
 {
-    private readonly ConcurrentDictionary<string, SemaphoreSlim> _locks = new();
+    private readonly ConcurrentDictionary<string, SemaphoreSlim> _locks = [];
 
     public async Task<T?> GetAsync<T>(string key, CancellationToken cancellationToken = default)
     {

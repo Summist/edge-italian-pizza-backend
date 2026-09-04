@@ -1,11 +1,8 @@
-using System.Runtime.InteropServices;
-
 namespace EdgeItalianPizza.BuildingBlocks.Results;
 
 /// <summary>
 /// Результат операции с возвращаемым значением.
 /// </summary>
-[StructLayout(LayoutKind.Sequential)]
 public readonly record struct Result<T>
 {
     /// <summary>
@@ -33,7 +30,8 @@ public readonly record struct Result<T>
     /// <summary>
     /// Создаёт успешный результат со значением.
     /// </summary>
-    public static Result<T> Success(T value) => new(value, Error.None, true);
+    public static Result<T> Success(T value) =>
+        new(value ?? throw new ArgumentNullException(nameof(value)), Error.None, true);
 
     /// <summary>
     /// Создаёт результат с ошибкой.

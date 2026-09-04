@@ -1,11 +1,8 @@
-using System.Runtime.InteropServices;
-
 namespace EdgeItalianPizza.BuildingBlocks.Results;
 
 /// <summary>
 /// Представляет ошибку. Для ошибок валидации заполняется ValidationErrors.
 /// </summary>
-[StructLayout(LayoutKind.Sequential)]
 public sealed record Error
 {
     /// <summary>
@@ -36,8 +33,8 @@ public sealed record Error
 
     public Error(string code, string message, IReadOnlyDictionary<string, string[]>? validationErrors)
     {
-        Code = code;
-        Message = message;
+        Code = code ?? throw new ArgumentNullException(nameof(code));
+        Message = message ?? throw new ArgumentNullException(nameof(message));
         ValidationErrors = validationErrors;
     }
 }
