@@ -5,18 +5,31 @@ namespace EdgeItalianPizza.BuildingBlocks.Primitives;
 /// </summary>
 public abstract class EntityBase
 {
-    /// <summary>
-    /// Уникальный идентификатор объекта.
-    /// </summary>
     public Guid Id { get; set; } = Guid.CreateVersion7();
 
-    /// <summary>
-    /// Дата и время создания в UTC.
-    /// </summary>
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
 
-    /// <summary>
-    /// Дата и время последнего обновления в UTC.
-    /// </summary>
     public DateTime? UpdatedAtUtc { get; set; }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not EntityBase other)
+        {
+            return false;
+        }
+
+        if (ReferenceEquals(this, other))
+        {
+            return true;
+        }
+
+        if (GetType() != other.GetType())
+        {
+            return false;
+        }
+
+        return Id == other.Id;
+    }
+
+    public override int GetHashCode() => Id.GetHashCode();
 }

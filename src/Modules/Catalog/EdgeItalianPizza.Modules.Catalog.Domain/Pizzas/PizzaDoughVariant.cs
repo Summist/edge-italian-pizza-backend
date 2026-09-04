@@ -16,12 +16,12 @@ public sealed class PizzaDoughVariant : ValueObject
     /// <summary>
     /// URL изображения для данного варианта теста и размера.
     /// </summary>
-    public string ImageUrl { get; set; } = string.Empty;
+    public required string ImageUrl { get; set; }
 
     /// <summary>
     /// Пищевая ценность для данного размера и теста.
     /// </summary>
-    public SizeNutrition Nutrition { get; set; } = null!;
+    public required SizeNutrition Nutrition { get; set; }
 
     /// <summary>
     /// Стоимость доп. ингредиентов для данного размера и теста.
@@ -32,5 +32,6 @@ public sealed class PizzaDoughVariant : ValueObject
     {
         yield return DoughType;
         yield return ImageUrl;
+        yield return IngredientPrices.OrderBy(x => x.IngredientId).ToList();
     }
 }

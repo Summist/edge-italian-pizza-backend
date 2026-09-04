@@ -22,12 +22,12 @@ public sealed class BasketItem : ValueObject
     /// <summary>
     /// Название продукта (снимок на момент добавления).
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     /// <summary>
     /// URL изображения (снимок на момент добавления).
     /// </summary>
-    public string ImageUrl { get; set; } = string.Empty;
+    public required string ImageUrl { get; set; }
 
     /// <summary>
     /// Количество порций.

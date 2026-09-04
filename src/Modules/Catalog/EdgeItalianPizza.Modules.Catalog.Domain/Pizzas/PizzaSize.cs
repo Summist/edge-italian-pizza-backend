@@ -10,7 +10,7 @@ public sealed class PizzaSize : ValueObject
     /// <summary>
     /// Название размера (например, "25 см", "30 см").
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     /// <summary>
     /// Диаметр в сантиметрах.
@@ -32,5 +32,6 @@ public sealed class PizzaSize : ValueObject
         yield return Name;
         yield return DiameterCm;
         yield return PriceModifier;
+        yield return DoughVariants.Count;
     }
 }
